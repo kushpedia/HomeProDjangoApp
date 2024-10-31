@@ -1,0 +1,247 @@
+body-container {
+    background-color: #eb1515;
+    width: 1000px;
+    height: 500px;
+}
+.login-container {
+    max-width: 400px;
+    margin: 5% auto;
+    padding: 20px;
+    background-color: rgb(172, 204, 227);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+.login-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.forgot-password-link {
+    text-align: right;
+    display: block;
+}
+@media (max-width: 991.98px) {
+    .navbar-nav {
+        text-align: left;
+        width: 100%;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .message_alerts{
+        text-align: center;
+        margin-left: auto;
+    }
+}
+
+/* style the landing page */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #e6f0fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header Section */
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.header-content {
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.header h1 {
+    font-size: 28px;
+    color: #333;
+}
+
+.header h1 span {
+    color: #4A90E2;
+}
+
+.header p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #666;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.header-buttons .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-primary {
+    background-color: #f65c59;
+}
+
+.btn-secondary {
+    background-color: #4A90E2;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.hero img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+}
+
+.hero .profile {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.profile-info h4 {
+    font-size: 14px;
+    margin: 0;
+}
+
+.profile-info p {
+    font-size: 12px;
+    color: #666;
+}
+
+/* How It Works Section */
+.how-it-works {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.how-it-works h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.steps {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.step {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.step-icon {
+    font-size: 36px;
+    color: #4A90E2;
+}
+
+.step h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.step p {
+    font-size: 14px;
+    color: #666;
+}
+/* style Hero section and image  */
+
+.hero-bg{
+        position: relative;
+        background-image: url('/static/images/homepage/Hero BG.png'); /* Replace with your image URL */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 200px;
+        border-radius: 1%;
+        margin:0 10px;
+        }
+    
+        /* Blurred overlay effect */
+        /* .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: inherit;
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+            border-radius: 1%;
+            margin:10px;
+        } */
+    
+        /* Ensuring content stays above the background */
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+/* Responsive */
+@media (min-width: 768px) {
+    .header h1 {
+        font-size: 36px;
+    }
+
+    .hero {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .header-buttons {
+        justify-content: center;
+    }
+
+    .steps {
+        flex-direction: row;
+    }
+    .hero-bg{
+        
+        height: 400px;
+        }
+}

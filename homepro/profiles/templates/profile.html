@@ -1,0 +1,114 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-header">
+        <!-- Profile Picture -->
+        {% if user_profile.profile_picture %}
+            <img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
+        {% else %}
+            <img src="https://via.placeholder.com/120" alt="Default Profile Picture" class="profile-picture">
+        {% endif %}
+
+
+        <button class="btn btn-outline-primary mt-3" onclick="document.getElementById('upload-profile-pic').click()">Edit Profile Picture</button>
+
+            <!-- Hidden form for profile picture upload -->
+            <form method="POST" enctype="multipart/form-data" style="display: none;">
+                {% csrf_token %}
+                {{ picture_form.as_p }}
+                <input type="file" id="upload-profile-pic" name="profile_picture" onchange="this.form.submit()">
+            </form>
+
+
+        <h2>{{ user_profile.full_name }}</h2>
+        <p class="text-muted">{{ user_profile.user.email }}</p>
+    </div>
+
+    <!-- Basic Information -->
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Basic Information</h5>
+            <p><strong>Phone:</strong> {{ user_profile.phone_number }}</p>
+            <p><strong>Address:</strong> {{ user_profile.street }}, {{ user_profile.city }}, {{ user_profile.state }}, {{ user_profile.postal_code }}</p>
+        </div>
+    </div>
+
+    {% if service_provider_details %}
+    <!-- Service Provider Details -->
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Service Provider Details</h5>
+            <p><strong>Specialization:</strong> {{ service_provider_details.specialization }}</p>
+            <p><strong>Availability Status:</strong> {{ service_provider_details.availability_status|yesno:"Available,Unavailable" }}</p>
+            <p><strong>Working Hours:</strong></p>
+            <ul>
+                {% for day, hours in service_provider_details.working_hours.items %}
+                    <li>{{ day|capfirst }}: {{ hours }}</li>
+                {% endfor %}
+            </ul>
+            <p><strong>Average Rating:</strong> {{ service_provider_details.average_rating }} ({{ service_provider_details.total_reviews }} reviews)</p>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Booking History -->
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Booking History</h5>
+            <ul>
+                {% for booking in booking_history %}
+                    <li>{{ booking.date }} - {{ booking.service_name }} - Status: {{ booking.status }}</li>
+                {% empty %}
+                    <p>No bookings found.</p>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- Saved Addresses -->
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Saved Addresses</h5>
+            <ul>
+                {% for address in saved_addresses %}
+                    <li>{{ address.address_name }}: {{ address.street }}, {{ address.city }}, {{ address.state }} {{ address.postal_code }}</li>
+                {% empty %}
+                    <p>No addresses saved.</p>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    {% if payment_info %}
+    <!-- Payment Information -->
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Payment Information</h5>
+            <p><strong>Preferred Payment Method:</strong> {{ payment_info.preferred_payment_method }}</p>
+            <p><strong>Card Ending in:</strong> **** {{ payment_info.card_last_four }}</p>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Notification Preferences -->
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Notification Preferences</h5>
+            <p><strong>Booking Updates:</strong> {{ notification_preferences.booking_updates|yesno:"Enabled,Disabled" }}</p>
+            <p><strong>Promotions:</strong> {{ notification_preferences.promotions|yesno:"Enabled,Disabled" }}</p>
+            <p><strong>Review Requests:</strong> {{ notification_preferences.review_requests|yesno:"Enabled,Disabled" }}</p>
+        </div>
+    </div>
+
+    <!-- Account Security -->
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Account Security</h5>
+            <p><strong>Password Last Updated:</strong> {{ account_security.password_last_updated }}</p>
+            <p><strong>Two-Factor Authentication:</strong> {{ account_security.two_factor_auth|yesno:"Enabled,Disabled" }}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
